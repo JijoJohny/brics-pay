@@ -31,6 +31,14 @@ async function signup(req, res) {
     }
     const hashedpass = await bcrypt.hash(password, 10);
     const pair = DiamSdk.Keypair.random();
+
+    const response = await fetch(
+      `https://friendbot.diamcircle.io?addr=${encodeURIComponent(
+        pair.publicKey(),
+      )}`,
+    );
+    const responseJSON = await response.json();
+    console.log("Success You have new account\n", responseJSON);
     const newuser = await prisma.user.create({
       data: {
         email,
