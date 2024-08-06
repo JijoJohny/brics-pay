@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const DiamSdk = require("diamante-sdk-js");
 const prisma = require("../libs/prisma");
 const jwt = require("jsonwebtoken");
+const { createaccount } = require("../services/accountservice");
 
 require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -30,20 +31,13 @@ async function signup(req, res) {
       return res.status(409).json({ error: "Email already exist" });
     }
     const hashedpass = await bcrypt.hash(password, 10);
-    const pair = DiamSdk.Keypair.random();
-
-    const response = await fetch(
-      `https://friendbot.diamcircle.io?addr=${encodeURIComponent(
-        pair.publicKey(),
-      )}`,
-    );
-    const responseJSON = await response.json();
+    const keys = await createaccount();
     const newuser = await prisma.user.create({
       data: {
         email,
         password: hashedpass,
-        public: pair.publicKey(),
-        secret: pair.secret(),
+        public: keys.public,
+        secret: keys.secret,
       },
     });
 
