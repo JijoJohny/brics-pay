@@ -12,6 +12,7 @@ import MultipleStopIcon from '@mui/icons-material/MultipleStop';
 import HistoryIcon from '@mui/icons-material/History';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import Anon from '../components/Anon';
 const Home = () => {
   const [selected, setSelected] = useState('Balance');
   const balanceRef = useRef(null);
@@ -64,6 +65,9 @@ const Home = () => {
         </div>
       </div>
       <div className='flex flex-col text-white w-full sm:w-[80%] p-5 ml-[20%]' id='contents'>
+      <div className=''>
+        <Anon/>
+      </div>
         <div ref={balanceRef}>
           <Balance />
         </div>

@@ -3,12 +3,21 @@ import Home from './pages/Home';
 import Login from "./pages/Login";
 import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import Anon from "./components/Anon";
+import { useEffect, useState } from "react";
 
 function App() {
   
+  const[ready,setReady] = useState(false)
+  
+  useEffect(()=>
+  {
+    setReady(true)
+  },[]);
 
   return (
-   <AnonAadhaarProvider _useTestAadhaar={false}> 
+    <>
+    {ready ?
+      <AnonAadhaarProvider _useTestAadhaar={false}> 
    <div className="min-h-screen w-full flex flex-col bg-black font-source">
       <BrowserRouter>
    <Routes>
@@ -24,7 +33,9 @@ function App() {
    </BrowserRouter>
     </div>
     </AnonAadhaarProvider> 
-      
+    :null}
+   
+    </>  
   )
 }
 
