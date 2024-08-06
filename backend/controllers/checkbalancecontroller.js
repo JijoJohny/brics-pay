@@ -1,24 +1,6 @@
 const DiamSdk = require("diamante-sdk-js");
 const prisma = require("../libs/prisma");
-
-async function getbalance(public, token) {
-  const server = new DiamSdk.Horizon.Server(
-    "https://diamtestnet.diamcircle.io/",
-  );
-
-  const account = await server.loadAccount(public);
-  // console.log("Balances for account : " + public);
-
-  // account.balances.forEach(function (balance) {
-  //   console.log("Type:", balance.asset_type, ", Balance:", balance.balance);
-  // });
-  function checkfn(x) {
-    if (token == "native") return token == x.asset_type;
-    return token == x.asset_code;
-  }
-  const balance = account.balances.find(checkfn).balance;
-  return balance;
-}
+const { getbalance } = require("../services/tokenservices");
 
 exports.getdiamtoken = async (req, res) => {
   // console.log(req.user);
