@@ -12,10 +12,12 @@ async function getbalance(public, token) {
   // account.balances.forEach(function (balance) {
   //   console.log("Type:", balance.asset_type, ", Balance:", balance.balance);
   // });
-  function nativebal(x) {
-    return token == x.asset_type;
+  function checkfn(x) {
+    if (token == "native") return token == x.asset_type;
+    return token == x.asset_code;
   }
-  const balance = account.balances.find(nativebal).balance;
+  console.log(account.balances);
+  const balance = account.balances.find(checkfn).balance;
   return balance;
 }
 
@@ -42,5 +44,31 @@ exports.getdiamtoken = async (req, res) => {
     res
       .status(500)
       .json({ error: "Failed to load diam token balance", message: err });
+  }
+};
+
+exports.getbrictoken = async (req, res) => {
+  // console.log(req.user);
+  const email = req.user.email;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const publickey = user.public;
+    const bricbal = await getbalance(publickey, "BRIC");
+    res.status(200).json({ bricbal });
+  } catch (err) {
+    console.error("Error retrievig bric token\n", err);
+    res
+      .status(500)
+      .json({ error: "Failed to load bric token balance", message: err });
   }
 };
