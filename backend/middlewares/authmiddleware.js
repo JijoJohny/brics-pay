@@ -10,7 +10,7 @@ const authenticatetoken = async (req, res, next) => {
       return res.status(401).json({ error: "Unauthorized : missing token" });
     }
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
     const userId = decoded.userId;
 
     const user = await prisma.user.findUnique({
