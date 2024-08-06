@@ -59,7 +59,7 @@ const Home = () => {
             <div>Swap</div>
           </div>
         </div>
-        <div className="absolute bottom-0 bg-white text-black font-bold py-3 hover:bg-black hover:text-white hover:cursor-pointer px-14 rounded text-center my-4 left-14" onClick={() => nav('/')}>
+        <div className="absolute bottom-0 bg-white text-black font-bold py-3 hover:bg-black hover:text-white hover:cursor-pointer px-14 rounded text-center my-4 lg:mx-12" onClick={() => nav('/')}>
           Sign Out
         </div>
       </div>
