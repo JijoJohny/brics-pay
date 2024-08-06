@@ -5,7 +5,7 @@ const ISSUER_SECRET = process.env.ISSUER_SECRET;
 
 async function payment(sourcekey, destkey, value) {
   var sourceKeys = DiamSdk.Keypair.fromSecret(sourcekey);
-  var destinationId = "destkey";
+  var destinationId = destkey;
 
   var transaction;
 
@@ -35,7 +35,7 @@ async function payment(sourcekey, destkey, value) {
             // Because Diamante allows transaction in many currencies, you must
             // specify the asset type. The special "native" asset represents Lumens.
             asset: bric,
-            amount: value,
+            amount: value.toString(),
           }),
         )
         // A memo allows you to add your own metadata to a transaction. It's

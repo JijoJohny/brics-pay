@@ -1,5 +1,5 @@
 const prisma = require("../libs/prisma");
-const payment = require("../services/tokenservices");
+const { payment } = require("../services/tokenservices");
 
 exports.createpayment = async (req, res) => {
   const { email, amount } = req.body;
@@ -35,7 +35,10 @@ exports.createpayment = async (req, res) => {
     }
     const sendersecret = senderuser.secret;
     try {
-      await payment(sendersecret, recieverpublic, amount);
+      // console.log(sendersecret);
+      // console.log(recieverpublic);
+      await payment(req.user.secret, recieverpublic, amount);
+      return res.status(200).json({ message: "Transaction successful" });
     } catch (err) {
       console.error("Error in performPayment:", err.message);
       res
