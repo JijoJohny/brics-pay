@@ -32,7 +32,6 @@ async function createaccount() {
         .addOperation(
           DiamSdk.Operation.changeTrust({
             asset: bric,
-            limit: "1000",
           }),
         )
         // setTimeout is required for a transaction

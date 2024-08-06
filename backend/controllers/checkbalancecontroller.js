@@ -16,7 +16,6 @@ async function getbalance(public, token) {
     if (token == "native") return token == x.asset_type;
     return token == x.asset_code;
   }
-  console.log(account.balances);
   const balance = account.balances.find(checkfn).balance;
   return balance;
 }
