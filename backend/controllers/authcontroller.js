@@ -38,7 +38,6 @@ async function signup(req, res) {
       )}`,
     );
     const responseJSON = await response.json();
-    console.log("Success You have new account\n", responseJSON);
     const newuser = await prisma.user.create({
       data: {
         email,
