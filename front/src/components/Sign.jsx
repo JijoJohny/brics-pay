@@ -1,14 +1,11 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Sign.css';
-
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 
 const Sign = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
-
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -18,12 +15,9 @@ const Sign = () => {
 
   const navigate = useNavigate();
 
-
   const handleToggle = () => {
     setIsSignUp(!isSignUp);
   };
-
-
 
   const countries = [
     { value: 'brazil', label: 'Brazil' },
@@ -38,81 +32,52 @@ const Sign = () => {
   ];
 
   const registerfn = async (e) => {
-   // e.preventDefault();
-    // const formData = new FormData();
-    // formData.append('name', name);
-    // formData.append('email', email);
-    // formData.append('Country', selectedCountry);
-    // formData.append('password', password);
-
-  //   let formData = {
-  //     "email":email,
-  //     "country":selectedCountry,
-  //     "password":password
-  // }
-
-  //actual  // try {
-    //   const response = await axios.post('http://localhost:3000/api/users/register', {
-    //     "email":email,
-    //     "country":selectedCountry,
-    //     "password":password
-    // });
-      
-    //   console.log(response.data);
-    //   //console.log(token);
-    //   //localStorage.setItem('token', token);
-    
-    //   setRegistered(true);
-    // } catch (error) {
-    //   console.error('Registration failed:', error);
-    //   setError('Registration failed. Please try again later.');
-    // }
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/api/user/register', {
+        email,
+        country: selectedCountry,
+        password
+      });
+      console.log(response.data);
+      setRegistered(true);
+      alert("Registration Successful ;)!!");
+      //navigate('/login'); // Navigate to login after successful registration
+    } catch (error) {
+      console.error('Registration failed:', error.response ? error.response.data : error.message);
+      setError('Registration failed. Please try again later.');
+    }
   };
 
-  // if (registered) {
-  //   navigate('/login');
-  // }
-
-//   const loginfn = async (e) => {
-//     e.preventDefault();
-//     try {
-//       // const FormData = new FormData();
-//       // formData.append('email', email);
-//       // formData.append('password', password);
-      
-//       // const storedToken = localStorage.getItem('token');
-      
-//       const response = await axios.post('http://localhost:3000/api/users/login', {
-//         "email":email,
-//         "password":password
-//       });
-//       const token = response.data.token;
-//       localStorage.setItem('token', token);
-//       console.log(token);
-      
-//       setLogin(true);
-//     } catch (error) {
-//       console.error('Login failed:', error);
-//       setError('Login failed. Please try again later.');
-//     }
-//   };
-
-//   if (login) {
-//     navigate("/home");
-//   }
+  const loginfn = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/api/user/login', {
+        email,
+        password
+      });
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      console.log(token);
+      setLogin(true);
+      alert("Login Successful ;)!!");
+      navigate('/home'); // Navigate to home after successful login
+    } catch (error) {
+      console.error('Login failed:', error.response ? error.response.data : error.message);
+      setError('Login failed. Please try again later.');
+    }
+  };
 
   return (
-    <div className="h-screen   bg-gradient-to-r from-slate-800 via-slate-900 to-black flex justify-center items-center">
-
+    <div className="h-screen bg-gradient-to-r from-slate-800 via-slate-900 to-black flex justify-center items-center">
       <div className={`border border-white w-3/4 container ${isSignUp ? 'right-panel-active' : ''}`}>
         <div className="form-container sign-up-container">
-
-          <form className="bg-white p-6 rounded-lg" >
+          <form className="bg-white p-6 rounded-lg" onSubmit={registerfn}>
             <h1 className="text-2xl font-bold mb-4 text-black">Create Account TEST</h1>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="input-field "
+              className="input-field"
               type="text"
               placeholder="Name"
               required
@@ -125,19 +90,17 @@ const Sign = () => {
               placeholder="Email"
               required
             />
-
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
               className="input-field"
               required
             >
-              <option value="" disabled>Select a BRICS Countr</option>
+              <option value="" disabled>Select a BRICS Country</option>
               {countries.map((country) => (
                 <option key={country.value} value={country.value}>{country.label}</option>
               ))}
             </select>
-
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -146,15 +109,12 @@ const Sign = () => {
               placeholder="Password"
               required
             />
-            
             <button className="btn-primary" type="submit">Sign Up</button>
-            
             {error && <p className="text-red-500 mt-2">{error}</p>}
-          
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="bg-white p-6 rounded-lg" >
+          <form className="bg-white p-6 rounded-lg" onSubmit={loginfn}>
             <h1 className="text-3xl font-bold mb-4 text-black text-center p-4">Sign in</h1>
             <input
               value={email}
@@ -195,5 +155,5 @@ const Sign = () => {
     </div>
   );
 };
-// export const EMAIL=email;
+
 export default Sign;
