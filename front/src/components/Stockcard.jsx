@@ -7,7 +7,13 @@ const Stockcard = ({ id, company, price, stname }) => {
 
     const buystocksfn = async(e) =>
     {
-        console.log('test');
+        const response = await axios.post('http://localhost:3000/api/stocks/buy-stock', {
+            "amount":amt,email
+          },{
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            }
+          });
         
     }
 
