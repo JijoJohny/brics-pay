@@ -84,4 +84,9 @@ async function login(req, res) {
   }
 }
 
-module.exports = { signup, login };
+async function getemail(req, res) {
+  // console.log(req.user);
+  res.status(200).json({ email: req.user.email });
+}
+
+module.exports = { signup, login, getemail };
