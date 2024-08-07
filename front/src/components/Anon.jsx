@@ -13,18 +13,32 @@ const Anon = () => {
   
 
   useEffect(() => {
-    console.log("Anon Status: ", anonAadhar.status);
-    anonAadhar.status === "logged-in" && setLog(true);
-    console.log(log);
-    const a = anonAadhar.anonAadhaarProofs;
-    if (a) {
-      console.log(a);
-      const parsedData = JSON.parse(a["0"].pcd);
-      const gender = parsedData.claim.gender;
-      const above = parsedData.claim.ageAbove18;
-      console.log("Gender:", gender);
-      console.log("Above 18:", above);
+    
+    const stat = localStorage.getItem('stats');
+    if (stat == "mailverified")
+    {
+      setLog(true)
+      console.log(stat);
+      
     }
+    else{
+      console.log("Anon Status: ", anonAadhar.status);
+      anonAadhar.status === "logged-in" && setLog(true);
+      console.log(log);
+      const a = anonAadhar.anonAadhaarProofs;
+      if (a) {
+        console.log(a);
+        
+        const parsedData = JSON.parse(a["0"].pcd);
+        localStorage.setItem('proof',parsedData)
+        localStorage.setItem('stats',"mailverified")
+        const gender = parsedData.claim.gender;
+        const above = parsedData.claim.ageAbove18;
+        console.log("Gender:", gender);
+        console.log("Above 18:", above);
+      }
+    }
+    
   }, [anonAadhar, log]);
 
   useEffect(() => {
@@ -39,7 +53,7 @@ const Anon = () => {
   }, [log]);
 
   return (
-    <div className='text-white absolute right-0'>
+    <div className='text-white absolute right-3'>
       {log !== true ? (
         <div className=''>
           <LaunchProveModal
