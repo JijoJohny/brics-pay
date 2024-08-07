@@ -5,6 +5,6 @@ const authtoken = require("../middlewares/authmiddleware");
 
 router.post("/register", signup);
 router.post("/login", login);
-router.post("/get-email", authtoken, getemail);
+router.get("/get-email", authtoken, getemail);
 
 module.exports = router;
