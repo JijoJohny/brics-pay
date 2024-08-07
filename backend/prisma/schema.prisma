@@ -14,8 +14,35 @@ datasource db {
 }
 
 model User {
-  email    String @id @map("_id")
-  password String
-  secret   String
-  public   String
+  email     String     @id @map("_id")
+  password  String
+  secret    String
+  public    String
+  purchases Purchase[]
+}
+
+model Stock {
+  id           String     @id @default(uuid()) @map("_id")
+  name         String
+  priceInbrics Int
+  Company      Company?   @relation(fields: [companyId], references: [id])
+  companyId    String?
+  Purchase     Purchase[]
+}
+
+model Company {
+  id     String  @id @default(uuid()) @map("_id")
+  name   String
+  public String
+  stocks Stock[]
+}
+
+model Purchase {
+  id        String   @id @default(uuid()) @map("_id")
+  stock     Stock    @relation(fields: [stockId], references: [id])
+  User      User?    @relation(fields: [userEmail], references: [email])
+  userEmail String?
+  stockId   String
+  quantity  Int
+  time      DateTime @default(now())
 }
