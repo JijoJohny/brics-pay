@@ -5,6 +5,24 @@ const BuyTokens = () => {
     const [amount, setAmount] = useState('');
     const [error, setError] = useState('');
 
+    const buytokens = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        const response = await axios.post('http://localhost:3000/api/token/buy-token', {
+          amount
+        },{
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+        console.log(response);
+        
+      } catch (error) {
+        console.error('Buy failed:', error);
+        setError('Buy failed. Please try again later.');
+      }
+    };
 const handleSubmit = async (e) =>
 {
     console.log('test');
@@ -56,7 +74,7 @@ const handleSubmit = async (e) =>
               </div>
               {error && <p className="text-red-500 text-center mb-4">{error}</p>}
               <div className="flex justify-center">
-                <button type="submit" className="px-4 py-2 bg-purple-700 text-white rounded-md hover:bg-purple-700 transition duration-300">
+                <button type="submit" onClick={buytokens()} className="px-4 py-2 bg-purple-700 text-white rounded-md hover:bg-purple-700 transition duration-300">
                   Buy Now
                 </button>
               </div>
