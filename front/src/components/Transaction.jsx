@@ -59,7 +59,7 @@ const Transaction = () => {
 
     return (
         <div className={`relative h-screen ${proceed ? "bg-black bg-opacity-50" : ""}`}>
-          <div className="flex flex-col justify-center ali gap-4 px-4 py-5 mt-20 border-2 rounded-[20px] border-white bg-gray-900 mx-auto w-[50%]">
+          <div className="flex flex-col justify-center ali gap-4 px-4 py-5 mt-32 border-2 rounded-[20px] border-white bg-gray-900 mx-auto w-[50%]">
             <div className="font-bold uppercase text-3xl text-center tracking-widest">
               Transaction
             </div>
