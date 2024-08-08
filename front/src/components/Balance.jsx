@@ -70,13 +70,13 @@ const Balance = () => {
         <div className="w-full text-center text-white mb-4 flex flex-col">
           <h1 className="text-3xl font-bold tracking-widest uppercase">Balance</h1>
           <h2 className="text-sm text-gray-400 mb-3">Tokens</h2>
-          <div className='flex items-center font-semibold hover:cursor-pointer hover:text-purple-600 justify-center' onClick={refreshbal}>
+          <div className='flex items-center font-semibold hover:cursor-pointer hover:text-[#2e72d2] justify-center' onClick={refreshbal}>
             Refresh Balance <LoopIcon style={{ cursor: 'pointer' }} />
           </div>
         </div>
         <div className="w-full">
-          <div className="bg-gray-800 p-4 rounded-lg mb-4 hover:border-2 border-purple-600 hover:scale-105">
-            <div className="flex justify-between items-center hover:text-purple-600">
+          <div className="bg-gray-800 p-4 rounded-lg mb-4 hover:border-2 border-[#2e72d2] hover:scale-105">
+            <div className="flex justify-between items-center hover:text-[#2e72d2]">
               <div>
                 <h3 className="text-lg font-bold">BRICS</h3>
                 <p className="text-sm text-gray-400">BRICS Token</p>
@@ -86,8 +86,8 @@ const Balance = () => {
               </div>
             </div>
           </div>
-          <div className="bg-gray-800 p-4 rounded-lg mb-4 hover:border-2 border-purple-600 hover:scale-105">
-            <div className="flex justify-between items-center hover:text-purple-600">
+          <div className="bg-gray-800 p-4 rounded-lg mb-4 hover:border-2 border-[#2e72d2] hover:scale-105">
+            <div className="flex justify-between items-center hover:text-[#2e72d2]">
               <div>
                 <h3 className="text-lg font-bold">DIAM</h3>
                 <p className="text-sm text-gray-400">DIAM Token</p>
@@ -100,11 +100,11 @@ const Balance = () => {
           </div>
         </div>
         <div className="mt-8 w-full flex flex-col items-end space-y-2">
-          <div className="text-purple-600 hover:underline flex items-center">
+          <div className="text-[#2e72d2] hover:underline flex items-center">
             <AddIcon fontSize='small' className='mr-1' />
             Import tokens
           </div>
-          <div className="text-purple-600 hover:underline flex items-center">
+          <div className="text-[#2e72d2] hover:underline flex items-center">
             <QuestionMarkIcon fontSize='small' className='mr-1' />
             Brics support
           </div>
