@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Sign.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLogContext } from '../providers/LogContext';
 
 const Sign = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -12,7 +13,8 @@ const Sign = () => {
   const [login, setLogin] = useState(false);
   const [name, setName] = useState('');
   const [registered, setRegistered] = useState(false);
-
+  const {checklog} = useLogContext();
+  const [log , setLog] = checklog
   const navigate = useNavigate();
 
   const handleToggle = () => {
@@ -66,14 +68,16 @@ const Sign = () => {
       console.error('Login failed:', error.response ? error.response.data : error.message);
       setError('Login failed. Please try again later.');
     }
+    
+    
   };
-
+  console.log(log);
   return (
     <div className="h-screen bg-gradient-to-r from-slate-800 via-slate-900 to-black flex justify-center items-center">
       <div className={`border border-white w-3/4 container ${isSignUp ? 'right-panel-active' : ''}`}>
         <div className="form-container sign-up-container">
           <form className="bg-white p-6 rounded-lg" onSubmit={registerfn}>
-            <h1 className="text-2xl font-bold mb-4 text-black">Create Account TEST</h1>
+            <h1 className="text-2xl font-bold mb-4 text-black">Create Account</h1>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
