@@ -85,8 +85,18 @@ async function login(req, res) {
 }
 
 async function getemail(req, res) {
+  const email = req.user.email;
   // console.log(req.user);
-  res.status(200).json({ email: req.user.email });
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      include: { purchases: true },
+    });
+    res.status(200).json({ email: user.email, purchases: user.purchases });
+  } catch (err) {
+    console.error("user retrieval error");
+    res.status(500).json({ error: "user not found" });
+  }
 }
 
 module.exports = { signup, login, getemail };

@@ -36,7 +36,7 @@ async function payment(sourcekey, destkey, value) {
             // specify the asset type. The special "native" asset represents Lumens.
             asset: bric,
             amount: value.toString(),
-          }),
+          })
         )
         // A memo allows you to add your own metadata to a transaction. It's
         // optional and does not affect how Diamante treats the transaction.
@@ -94,7 +94,7 @@ async function paymentdiam(sourcekey, amount) {
             // specify the asset type. The special "native" asset represents Lumens.
             asset: DiamSdk.Asset.native(),
             amount: amount.toString(),
-          }),
+          })
         )
         // A memo allows you to add your own metadata to a transaction. It's
         // optional and does not affect how Diamante treats the transaction.
@@ -120,7 +120,7 @@ async function paymentdiam(sourcekey, amount) {
 
 async function getbalance(public, token) {
   const server = new DiamSdk.Horizon.Server(
-    "https://diamtestnet.diamcircle.io/",
+    "https://diamtestnet.diamcircle.io/"
   );
 
   const account = await server.loadAccount(public);
@@ -133,6 +133,7 @@ async function getbalance(public, token) {
     if (token == "native") return token == x.asset_type;
     return token == x.asset_code;
   }
+  console.log(account.balances);
   const balance = account.balances.find(checkfn).balance;
   return balance;
 }
