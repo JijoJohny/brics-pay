@@ -68,11 +68,7 @@ const Transaction = () => {
         setProceed(true);
       };
 
-      const handleProceed = async () =>
-      {
-        console.log('test');
-        
-      }
+     
     
 
     return (
@@ -130,10 +126,10 @@ const Transaction = () => {
                       <select
                         id="asset"
                         name="asset"
-                        className="select join-item ip-padding bg-slate-300 rounded-lg"
+                        className="select join-item ip-padding bg-slate-300 rounded-lg text-black"
                       >
                         <option value="" disabled>Select Asset</option>
-                        <option value="native">XLM</option>
+                        
                         <option value="native">BRIC</option>
                       </select>
                     </div>
@@ -142,7 +138,7 @@ const Transaction = () => {
                     <button
                       type="button"
                       className="flex gap-1 px-3 py-2 border-2 border-blue-600 text-blue-700 rounded-lg hover:bg-blue-600 hover:text-white font-bold"
-                      onClick={()=>{handleProceed();
+                      onClick={()=>{
                         transactions();
                       }
                       }

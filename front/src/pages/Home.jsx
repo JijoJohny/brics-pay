@@ -13,6 +13,8 @@ import HistoryIcon from '@mui/icons-material/History';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Anon from '../components/Anonnew';
+import { useLogContext } from '../providers/LogContext';
+
 const Home = () => {
   const [selected, setSelected] = useState('Balance');
   const balanceRef = useRef(null);
@@ -23,12 +25,24 @@ const Home = () => {
   const swapRef = useRef(null);
   const nav = useNavigate();
 
+  const { checklog } = useLogContext();
+  const [log,setLog] = checklog;
+
   const sideclass = "flex items-center gap-2 p-3 bg-gray-800 hover:bg-gray-700 rounded-md hover:cursor-pointer";
 
   const scrollToRef = (ref, name) => {
-    setSelected(name);
-    ref.current.scrollIntoView({ behavior: 'smooth' });
+    if(log)
+    {
+      setSelected(name);
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    else{
+      alert("Please verify")
+    }
+    
   };
+  console.log(log);
+  
 
   return (
     <div className='h-screen flex overflow-hidden'>
@@ -60,7 +74,7 @@ const Home = () => {
             <div>Swap</div>
           </div>
         </div>
-        <div className="absolute bottom-0 bg-white text-black font-bold py-3 hover:bg-black hover:text-white hover:cursor-pointer px-14 rounded text-center my-4 lg:mx-12" onClick={() => nav('/')}>
+        <div className="absolute bottom-0 bg-white text-black font-bold py-3 hover:bg-black hover:text-white hover:cursor-pointer px-14 rounded text-center my-4 lg:mx-12" onClick={() => {setLog(false);nav('/');}}>
           Sign Out
         </div>
       </div>

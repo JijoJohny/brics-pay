@@ -23,11 +23,7 @@ const BuyTokens = () => {
         setError('Buy failed. Please try again later.');
       }
     };
-const handleSubmit = async (e) =>
-{
-    console.log('test');
-    
-}
+
 
     return (
 
@@ -35,7 +31,7 @@ const handleSubmit = async (e) =>
         <div className="flex justify-center items-center min-h-screen ">
           <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md border-2 border-white">
             <h2 className="text-3xl font-bold text-center text-white mb-4 tracking-widest uppercase">Buy Token</h2>
-            <form onSubmit={buytokens()}>
+            <form onSubmit={buytokens}>
               <div className="mb-4">
                 <label className=" text-white mb-2">Select Country</label>
                 <select id="" name="country" className="w-full p-2 rounded-md bg-gray-700 text-white">
@@ -67,7 +63,7 @@ const handleSubmit = async (e) =>
                 <label htmlFor="asset" className="block text-white mb-2">Select Asset</label>
                 <select id="asset" name="asset" className="w-full p-2 rounded-md bg-gray-700 text-white">
                   <option value="" disabled selected>Select Asset</option>
-                  <option value="native">XLM</option>
+                  <option value="native">DIAM</option>
     
                   <option value="native">BRIC</option>
                 </select>
