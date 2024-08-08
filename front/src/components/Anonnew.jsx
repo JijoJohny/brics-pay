@@ -3,15 +3,20 @@ import { useEffect, useState } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
+import { useLogContext } from '../providers/LogContext.jsx';
 
 const Anon = () => {
     const [anonAadhar] = useAnonAadhaar();
+
     
-    const [log, setLog] = useState(false);
+    
     const [showAlert, setShowAlert] = useState(false);
     const [estat,setEstat] = useState("")
 
-
+    const { checklog } = useLogContext();
+    const [log, setLog] = checklog
+    console.log("log",log);
+    
     const getemail = async() =>
         {
           try{
@@ -21,7 +26,7 @@ const Anon = () => {
               'Authorization' : `Bearer ${token}`,
              }
              });
-             console.log(response.data.email + 'verified');
+             //console.log(response.data.email + 'verified');
              
             setEstat(response.data.email + 'verified')
         
@@ -35,14 +40,14 @@ const Anon = () => {
 
     useEffect(()=>{
     
-    console.log("Anon Status: ", anonAadhar.status);
+    //console.log("Anon Status: ", anonAadhar.status);
     if(anonAadhar.status === "logged-in" || estat === localStorage.getItem('stats') )
         {  setLog(true);
-    console.log(log);
+    console.log("inside log",log);
     const a = anonAadhar.anonAadhaarProofs;
     
     if (a) {
-      console.log(a);
+      //console.log(a);
       const parsedData = JSON.parse(a["0"].pcd);
       localStorage.setItem('proof',parsedData)
       localStorage.setItem('stats',estat)
@@ -54,7 +59,7 @@ const Anon = () => {
     //   console.log("Above 18:", above);
     }
 }
-    },[anonAadhar.anonAadhaarProofs, anonAadhar.status, estat, log])
+    },[anonAadhar.anonAadhaarProofs, anonAadhar.status, estat, log,setLog])
 
     useEffect(() => {
         if (log) {
