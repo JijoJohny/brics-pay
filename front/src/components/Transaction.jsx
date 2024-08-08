@@ -51,8 +51,8 @@ const Transaction = () => {
         return users.map((user) => (
           <button
             key={user}
-            className={`user-item bg-slate-800 p-3 rounded-md hover:border-b border-purple-600 hover:scale-105 hover:cursor-pointer ${
-              selectedUser === user ? "bg-slate-500  text-purple-600 scale-105 border-b border-purple-600" : ""
+            className={`user-item bg-slate-800 p-3 rounded-md hover:border-b border-[#2e72d2] hover:scale-105 hover:cursor-pointer ${
+              selectedUser === user ? "bg-slate-500  text-[#2e72d2] scale-105 border-b border-[#2e72d2]" : ""
             }`}
             onClick={() => {
               setSelectedUser(user);
@@ -95,7 +95,7 @@ const Transaction = () => {
               <div className="flex flex-col gap-2 font-semibold">{renderUsers()}</div>
               {selectedUser && (
                 <button
-                  className="proceed-button bg-purple-600 text-white px-4 py-2 rounded-md mt-2"
+                  className="proceed-button bg-[#2e72d2] text-white px-4 py-2 rounded-md mt-2 hover:bg-[#0000ee] transition duration-300"
                   onClick={handleProceedClick}
                 >
                   Proceed
@@ -107,7 +107,7 @@ const Transaction = () => {
           {proceed && (
             <div className="bg-black bg-opacity-50 absolute inset-0 flex items-center justify-center ">
               <div className="btoken-container">
-                <div className="bg-gray-800 relative bottom-0 border-2 border-purple-600 p-8 rounded-lg" style={{ width: '28%', height: '320px' }}>
+                <div className="bg-gray-800 relative bottom-0 border-2 border-[#2e72d2] p-8 rounded-lg" style={{ width: '28%', height: '320px' }}>
                   <div className="absolute top-2 right-4">
                     <CloseIcon fontSize="medium" color="" onClick={()=>setProceed(false)}/>
                   </div>
