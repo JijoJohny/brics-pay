@@ -3,29 +3,38 @@ import Stockcard from './Stockcard';
 import axios from 'axios'
 
 const Stock = () => {
-   // const [stocks, setStocks] = useState([]);
+   const [stocks, setStocks] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchStocks = async () => {
-    //       try {
-    //         const response = await axios.get('http://localhost:3000/api/list/stocks');
-    //         setStocks(response.data);
-    //       } catch (error) {
-    //         console.error('Error fetching stocks:', error);
-    //       }
-    //     };
+    useEffect(() => {
+        const fetchStocks = async () => {
+          try {
+            const token = localStorage.getItem('token')
+            const response = await axios.get('http://localhost:3000/api/stock/get-stocks',{
+            headers:{
+            'Authorization': `Bearer ${token}`,
+              }
+            }
+              
+            );
+            setStocks(response.data);
+            
+            
+          } catch (error) {
+            console.error('Error fetching stocks:', error);
+          }
+        };
     
-    //     fetchStocks();
-    //   }, []);
+        fetchStocks();
+      }, []);
 
-      const stocks = [
-    { name: 'Bajaj', price: 14.00, change: 2.34 },
-    { name: 'Zerodha', price: 23.00, change: -1.2 },
-    { name: 'Nestle', price: 11.00, change: 0.8 },
-    { name: 'DMart', price: 17.00, change: -0.5 },
-    { name: 'Excel', price: 21.00, change: 1.5 },
-    { name: 'Lotus', price: 13.00, change: -2.0 },
-  ];
+  //     const stocks = [
+  //   { name: 'Bajaj', price: 14.00, change: 2.34 },
+  //   { name: 'Zerodha', price: 23.00, change: -1.2 },
+  //   { name: 'Nestle', price: 11.00, change: 0.8 },
+  //   { name: 'DMart', price: 17.00, change: -0.5 },
+  //   { name: 'Excel', price: 21.00, change: 1.5 },
+  //   { name: 'Lotus', price: 13.00, change: -2.0 },
+  // ];
 
     return (
         <div className="  px-4 h-screen ">
@@ -35,10 +44,10 @@ const Stock = () => {
               
               <Stockcard
                 key = {index}
-                id = {index}
-                company = {stock.name}
-                price = {stock.price}
-                stname = {stock.change}
+                id = {stock.companyId}
+                company = {stock.companyName}
+                price = {stock.stockPriceInBrics}
+                stname = {stock.stockName}
 
               />
             ))}

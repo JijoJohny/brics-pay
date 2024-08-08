@@ -30,7 +30,7 @@ const Swap = () => {
     
               <p className="text-red-500 text-center mb-4"></p>
               <div className="flex justify-center">
-                <button type="submit" className="px-4 py-2 bg-purple-700 text-white rounded-md hover:bg-green-700 transition duration-300">
+                <button type="submit" className="px-4 py-2 bg-[#2e72d2] text-white rounded-md hover:bg-[#0000ee] transition duration-300">
                   Swap Now
                 </button>
               </div>
