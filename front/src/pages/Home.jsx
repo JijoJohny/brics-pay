@@ -12,7 +12,7 @@ import MultipleStopIcon from '@mui/icons-material/MultipleStop';
 import HistoryIcon from '@mui/icons-material/History';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import Anon from '../components/Anon';
+import Anon from '../components/Anonnew';
 const Home = () => {
   const [selected, setSelected] = useState('Balance');
   const balanceRef = useRef(null);
