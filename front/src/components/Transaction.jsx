@@ -9,7 +9,7 @@ const Transaction = () => {
     const [query, setQuery] = useState("");
     const [selectedUser, setSelectedUser] = useState(null); // State to track selected user
     const [proceed, setProceed] = useState(false); // State to track proceed action
-    const [mail, setMail] = useState("");
+    const [email, setemail] = useState("");
     const [amt, setAmt] = useState("");
     const [error, setError] = useState("");
     const userContainerRef = useRef(null);
@@ -26,8 +26,26 @@ const Transaction = () => {
           document.removeEventListener("mousedown", handleClickOutside);
         };
       }, []);
+      const transactions = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          console.log(token);
+          const response = await axios.post('http://localhost:3000/api/token/transactions', {
+            "amount":amt,email
+          },{
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            }
+          });
+          console.log(response);
+          
+        } catch (error) {
+          console.error('Buy failed:', error);
+          setError('Buy failed. Please try again later.');
+        }
+      };
     
-      const users = ["anjanakj000@gmail.com", "parveen123@gmail.com", "jijojohny13@gmail.com", "anson210@gmail.com"];
+      const users = ["anjanakj000@gmail.com", "shambu@gmail.com","parveen123@gmail.com", "jijojohny13@gmail.com", "anson210@gmail.com"];
     
       const renderUsers = () => {
         return users.map((user) => (
@@ -38,7 +56,7 @@ const Transaction = () => {
             }`}
             onClick={() => {
               setSelectedUser(user);
-              setMail(user);
+              setemail(user);
             }}
           >
             {user}
@@ -124,7 +142,10 @@ const Transaction = () => {
                     <button
                       type="button"
                       className="flex gap-1 px-3 py-2 border-2 border-blue-600 text-blue-700 rounded-lg hover:bg-blue-600 hover:text-white font-bold"
-                      onClick={handleProceed}
+                      onClick={()=>{handleProceed();
+                        transactions();
+                      }
+                      }
                     >
                       Send <ArrowOutwardIcon />
                     </button>
