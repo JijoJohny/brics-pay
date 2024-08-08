@@ -3,13 +3,16 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import AddIcon from '@mui/icons-material/Add';
 import LoopIcon from '@mui/icons-material/Loop';
 import axios from 'axios'; // Ensure axios is imported
+import { useLogContext } from '../providers/LogContext';
 
 const Balance = () => {
   const [baldiam, setBaldiam] = useState(null);
   const [balbric, setBalbric] = useState(null);
   const [error, setError] = useState('');
 
-  
+  const { checklog } = useLogContext();
+  const [log, setLog] = checklog;
+
   const bricbalancefn = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -48,13 +51,26 @@ const Balance = () => {
     }
   };
 
+  const refreshbal = () =>
+  {
+    if(log)
+    {
+      diambalancefn(); 
+      bricbalancefn();
+    }
+    else
+    {
+      alert("Please verify")
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center justify-center bg-gray-900 p-4 rounded-lg shadow-lg w-[450px] h-[950] border-2 border-white">
         <div className="w-full text-center text-white mb-4 flex flex-col">
           <h1 className="text-3xl font-bold tracking-widest uppercase">Balance</h1>
           <h2 className="text-sm text-gray-400 mb-3">Tokens</h2>
-          <div className='flex items-center font-semibold hover:cursor-pointer hover:text-purple-600 justify-center' onClick={() => { diambalancefn(); bricbalancefn(); }}>
+          <div className='flex items-center font-semibold hover:cursor-pointer hover:text-purple-600 justify-center' onClick={refreshbal}>
             Refresh Balance <LoopIcon style={{ cursor: 'pointer' }} />
           </div>
         </div>
