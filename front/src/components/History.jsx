@@ -1,84 +1,52 @@
-import React, { useState } from 'react';
+import { CTable , CTableBody , CTableHead,CTableRow , CTableHeaderCell , CTableDataCell } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
-const History = () => {
-  return (
-    <>
-        
-        <div className="h-screen ">
-        <div className="overflow-x-auto ">
-          <h3 className='mt-10 mb-20 text-3xl uppercase font-bold tracking-widest text-center '>Transaction History</h3> 
-       
-        <table className="table-compact table ">
-          <thead>
-            <tr >
-              <th  ><p className='text-purple-600'>Amount</p></th>
-               <th><p className='text-purple-600'>Asset</p></th> 
-               <th><p className='text-purple-600'>Direction</p></th>
-                <th><p className='text-purple-600'>Protocol</p></th>
-                 <th><p className='text-purple-600'>Status</p></th> 
-                 <th><p className='text-purple-600'>Date</p></th> 
-                 <th><p className='text-purple-600'>More Info</p></th> 
-                 <th><p className='text-purple-600'>Actions</p></th>
-            </tr></thead> 
-        <tbody>
-        <tr>
-              <td>0</td>
-               <td>XLM</td> 
-               <td>-</td>
-                <td>-</td>
-                 <td>-</td> 
-                 <td>12/02/11</td> 
-                 <td>-</td> 
-                 <td>-</td>
-            </tr>
-            <tr>
-              <td>0</td>
-               <td>XLM</td> 
-               <td>-</td>
-                <td>-</td>
-                 <td>-</td> 
-                 <td>12/02/11</td> 
-                 <td>-</td> 
-                 <td>-</td>
-            </tr>
-          </tbody>
-          
-          </table> 
-          
-          </div>
-          
-          </div>
-          {/* <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table> */}
-    </>
-  );
-};
+
+
+const History = () =>
+{
+
+  return(
+  <div className='w-full h-screen flex flex-col gap-10'>
+  <div className='font-bold uppercase text-3xl text-center tracking-widest mt-20'>
+      Purchase History (sample data)
+  </div>
+  
+  <CTable className='mt-5' bordered color='dark' hover striped>
+  <CTableHead className='text-blue-300'>
+    <CTableRow>
+      <CTableHeaderCell scope="col">#</CTableHeaderCell>
+      <CTableHeaderCell scope="col">Class</CTableHeaderCell>
+      <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+      <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+    </CTableRow>
+  </CTableHead>
+  <CTableBody>
+    <CTableRow>
+      <CTableHeaderCell scope="row">1</CTableHeaderCell>
+      <CTableDataCell>Mark</CTableDataCell>
+      <CTableDataCell>Otto</CTableDataCell>
+      <CTableDataCell>@mdo</CTableDataCell>
+    </CTableRow>
+    <CTableRow>
+      <CTableHeaderCell scope="row">2</CTableHeaderCell>
+      <CTableDataCell>Jacob</CTableDataCell>
+      <CTableDataCell>Thornton</CTableDataCell>
+      <CTableDataCell>@fat</CTableDataCell>
+    </CTableRow>
+    <CTableRow>
+      <CTableHeaderCell scope="row">3</CTableHeaderCell>
+      <CTableDataCell >Larry </CTableDataCell>
+      <CTableDataCell>the Bird</CTableDataCell>
+      <CTableDataCell>@twitter</CTableDataCell>
+    </CTableRow>
+  </CTableBody>
+</CTable>
+
+</div>
+  )
+}
 
 export default History;
+
+

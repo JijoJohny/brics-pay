@@ -74,7 +74,7 @@ const Anon = () => {
 
 
     return (
-        <div className='text-white absolute right-3'>
+        <div className='text-white absolute right-3 top-5'>
           {log !== true ? (
             <div >
               <LaunchProveModal

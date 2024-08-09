@@ -63,9 +63,9 @@ const BuyTokens = () => {
                 <label htmlFor="asset" className="block text-white mb-2">Select Asset</label>
                 <select id="asset" name="asset" className="w-full p-2 rounded-md bg-gray-700 text-white">
                   <option value="" disabled selected>Select Asset</option>
-                  <option value="native">DIAM</option>
-    
                   <option value="native">BRIC</option>
+    
+                  <option value="native">DIAM</option>
                 </select>
               </div>
               {error && <p className="text-red-500 text-center mb-4">{error}</p>}
