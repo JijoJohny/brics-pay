@@ -37,7 +37,11 @@ const Transaction = () => {
               'Authorization': `Bearer ${token}`,
             }
           });
-          console.log(response);
+          if(response)
+          {
+            console.log(response);
+            alert("Transaction Successfull")
+          }
           
         } catch (error) {
           console.error('Buy failed:', error);
@@ -45,7 +49,7 @@ const Transaction = () => {
         }
       };
     
-      const users = ["anjanakj000@gmail.com", "shambu@gmail.com","parveen123@gmail.com", "jijojohny13@gmail.com", "anson210@gmail.com"];
+      const users = ["anjanakj009@gmail.com","parveen123@gmail.com", "anson210@gmail.com"];
     
       const renderUsers = () => {
         return users.map((user) => (
