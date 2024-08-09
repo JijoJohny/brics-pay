@@ -63,3 +63,9 @@ node index.js
 * Enhance the user interface for an intuitive and user-friendly experience.
 * Implement robust security measures for data protection.
 * Integrate with additional financial services for a comprehensive platform.
+## Team Members:
+
+- **Jijo Johny:** [GitHub](https://github.com/JijoJohny)
+- **Anson Antony:** [GitHub](https://github.com/ansonantony)
+- **Yadhu Krishnan B C:** [GitHub](https://github.com/YBC2204)
+- **Thej Zain:** [GitHub](https://github.com/thejzain)
