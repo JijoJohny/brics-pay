@@ -90,7 +90,13 @@ async function getemail(req, res) {
   try {
     const user = await prisma.user.findUnique({
       where: { email },
-      include: { purchases: true },
+      include: {
+        purchases: {
+          include: {
+            stock: { include: { Company: true } },
+          },
+        },
+      },
     });
     res.status(200).json({ email: user.email, purchases: user.purchases });
   } catch (err) {
