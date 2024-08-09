@@ -82,7 +82,7 @@ const Balance = () => {
                 <p className="text-sm text-gray-400">BRICS Token</p>
               </div>
               <div>
-                <p className="text-lg font-bold">{balbric !== null ? `${balbric} DIAM` : 'Fetching...'}</p>
+                <p className="text-lg font-bold">{balbric !== null ? `${balbric} BRIC` : 'Fetching...'}</p>
               </div>
             </div>
           </div>
