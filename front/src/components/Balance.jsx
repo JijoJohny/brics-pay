@@ -53,15 +53,15 @@ const Balance = () => {
 
   const refreshbal = () =>
   {
-    if(log)
-    {
+    // if(log)
+    // {
       diambalancefn(); 
       bricbalancefn();
-    }
-    else
-    {
-      alert("Please verify")
-    }
+    // }
+    // else
+    // {
+    //   alert("Please verify")
+    // }
   };
 
   return (

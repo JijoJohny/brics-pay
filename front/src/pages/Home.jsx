@@ -31,7 +31,7 @@ const Home = () => {
   const sideclass = "flex items-center gap-2 p-3 bg-gray-800 hover:bg-gray-700 rounded-md hover:cursor-pointer";
 
   const scrollToRef = (ref, name) => {
-    if(log)
+    if(!log)
     {
       setSelected(name);
       ref.current.scrollIntoView({ behavior: 'smooth' });
