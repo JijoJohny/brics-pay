@@ -17,6 +17,7 @@ const BuyTokens = () => {
           }
         });
         console.log(response);
+        alert("Purchase Successfull")
         
       } catch (error) {
         console.error('Buy failed:', error);
